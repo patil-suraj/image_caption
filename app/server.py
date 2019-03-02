@@ -33,7 +33,16 @@ def setup_model():
     if not os.path.exists(destination):
         download_file_from_google_drive(destination)
 
-setup_model() 
+# setup_model()
+config = Config()
+config.beam_size = 3
+config.phase = 'test'
+config.train_cnn = False
+
+sess = tf.Session()
+model = CaptionGenerator(config)
+model.load(sess)
+tf.get_default_graph().finalize()
 
 @app.route('/')
 def index():
@@ -43,21 +52,12 @@ def index():
 def analyze():
     f = request.files['file']
     f.save(os.path.join('./test/images', f.filename))
-
-    config = Config()
-    config.beam_size = 3
-    config.phase = 'test'
-    config.train_cnn = False
-
-    with tf.Session() as sess:
-        data, vocabulary = prepare_test_data(config)
-        model = CaptionGenerator(config)
-        model.load(sess)
-        tf.get_default_graph().finalize()
-        captions = model.test(sess, data, vocabulary)
+    
+    data, vocabulary = prepare_test_data(config)
+    captions = model.test(sess, data, vocabulary)
     
     os.remove(os.path.join('./test/images', f.filename))
-    return jsonify({'captions': captions})
+    return jsonify({'result': captions[0]})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',  port=80, debug=True)

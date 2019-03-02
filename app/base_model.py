@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 from utils.nn import NN
 from utils.coco.coco import COCO
-from utils.coco.pycocoevalcap.eval import COCOEvalCap
+# from utils.coco.pycocoevalcap.eval import COCOEvalCap
 from utils.misc import ImageLoader, CaptionData, TopN
 
 class BaseModel(object):
@@ -103,8 +103,8 @@ class BaseModel(object):
 
         # Evaluate these captions
         eval_result_coco = eval_gt_coco.loadRes(config.eval_result_file)
-        scorer = COCOEvalCap(eval_gt_coco, eval_result_coco)
-        scorer.evaluate()
+        # scorer = COCOEvalCap(eval_gt_coco, eval_result_coco)
+        # scorer.evaluate()
         print("Evaluation complete.")
 
     def test(self, sess, test_data, vocabulary):

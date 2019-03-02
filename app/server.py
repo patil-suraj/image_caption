@@ -55,7 +55,7 @@ def analyze():
         captions = model.test(sess, data, vocabulary)
     
     os.remove(os.path.join('./test/images', f.filename))
-    return jsonify({'captions:' captions})
+    return jsonify({'captions': captions})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',  port=8080, debug=True)

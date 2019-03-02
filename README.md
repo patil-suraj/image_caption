@@ -12,7 +12,7 @@ Clone the repo and download the following packages for python2.7
 * **flask**
 
 ### Usage
-* Download the model from here [here](https://drive.google.com/open?id=1bqyPjwAaos3xeS2p7olGRNFBT6jGfgaQ), rename the file to `model.npy` and place it in app/models/ directory
+* Download the model from here [here]https://drive.google.com/open?id=1kUfKJ-ojbcFdd1phCh4NHZUtegjMnFsE), rename the file to `model.npy` and place it in app/models/ directory
 * cd into app directory and run ```python server.py```
 if using linux then use ```sudo python server.py```. This will start the python server, which you can access on `localhost`
 * Go to `localhost` in the browser. 
